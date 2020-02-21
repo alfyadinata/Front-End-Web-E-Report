@@ -48,7 +48,7 @@ export default function Login() {
   const classes = useStyles();
 
   return (
-    <div style={{  backgroundSize:'cover', backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`, backgroundSize: 'cover', position:'absolute', width: '100%', height:'100%' }}>
+    <div style={{  backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`, backgroundSize: 'cover', position:'absolute', width: '100%', height:'100%' }}>
          {/*style={{  backgroundSize:'cover', backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)` }}  */}
         <Container component="main" maxWidth="xs">
         <CssBaseline />

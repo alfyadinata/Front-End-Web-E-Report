@@ -1,39 +1,32 @@
 import React from 'react'
 import { Grid, TextField, Checkbox, Link, FormControlLabel, Button, } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
+// config
+import { withAuth } from '../../../context/AuthContext'
+
 
 class FormLogin extends React.Component {
-    constructor(props){
-        super()
-        this.state  = {
-            isSubmit: false,
-            form: {
-                email: '',
-                password: ''
-            }
-        }
+
+    state   =   {
+        email: '',
+        password: '',
     }
 
-    handleSubmit    =   (event)  =>  {
-        event.preventDefault()
-        console.log(this.state.form)
-    }
+    handleChange    =   (e)  =>  {
 
-    handleChange    =   (event) =>  {
-        // console.info(event.target.name)
-        let form        =   [event.target.name]
-        let formValue   =   [event.target.value]
-        console.log(formValue)
+        const { name, value}    =   e.target
         this.setState({
-            ...this.state,
-            form: {
-                [event.target.name]: event.target.value
-            }
-
+            [name]: value
         })
+
     }
 
+    handleSubmit    =   (e)  =>  {
 
+        e.preventDefault()
+        this.props.login(this.state)
+
+    }
 
     render() {
         return (
@@ -49,7 +42,7 @@ class FormLogin extends React.Component {
                 autoComplete="email"
                 onChange={this.handleChange}
                 name="email"
-                // value={this.state.form.email}
+                value={this.state.email}
             />
             <TextField
                 variant="outlined"
@@ -63,7 +56,7 @@ class FormLogin extends React.Component {
                 autoComplete="current-password"
                 name="password"
                 onChange={this.handleChange}
-                // value={this.state.form.password}
+                value={this.state.password}
             />
             <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -104,4 +97,4 @@ const classes   =   makeStyles({
     }
 })
 
-export default FormLogin
+export default withAuth(FormLogin)
