@@ -10,6 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormLogin from './FormLogin';
 import { Card } from '@material-ui/core';
+// config
+import { withAuth } from '../../context/AuthContext'
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -44,33 +47,73 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Login() {
-  const classes = useStyles();
 
-  return (
-    <div style={{  backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`, backgroundSize: 'cover', position:'absolute', width: '100%', height:'100%' }}>
-         {/*style={{  backgroundSize:'cover', backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)` }}  */}
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-            <Grid container spacing={3}>
-                <Card style={{ padding: '20%', }}>
-                    <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                Sign in to E-Report 
-                </Typography>
-                    <FormLogin />
-                </Card>
+class Login extends React.Component {
+  render() {
+    if (this.props.isLoggedIn) {
+      return <Redirect push to='/dashboard' />
+    }
 
-            </Grid>
+    const classes = useStyles
 
-        </div>
-        <Box mt={8}>
-            <Copyright />
-        </Box>
-        </Container>
-    </div>
-  );
+    return (
+        <div style={{  backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`, backgroundSize: 'cover', position:'absolute', width: '100%', height:'100%' }}>
+            {/*style={{  backgroundSize:'cover', backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)` }}  */}
+          <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+              <Grid container spacing={3}>
+                  <Card style={{ padding: '20%', }}>
+                      <Avatar className={classes.avatar}>
+                      <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
+                  Sign in to E-Report 
+                  </Typography>
+                      <FormLogin />
+                  </Card>
+
+              </Grid>
+
+          </div>
+          <Box mt={8}>
+              <Copyright />
+          </Box>
+          </Container>
+      </div>
+    )
+  }
 }
+
+// function Login() {
+//   const classes = useStyles();
+
+//   return (
+//     <div style={{  backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)`, backgroundSize: 'cover', position:'absolute', width: '100%', height:'100%' }}>
+//          {/*style={{  backgroundSize:'cover', backgroundImage: `url(https://images.pexels.com/photos/542403/pexels-photo-542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)` }}  */}
+//         <Container component="main" maxWidth="xs">
+//         <CssBaseline />
+//         <div className={classes.paper}>
+//             <Grid container spacing={3}>
+//                 <Card style={{ padding: '20%', }}>
+//                     <Avatar className={classes.avatar}>
+//                     <LockOutlinedIcon />
+//                 </Avatar>
+//                 <Typography component="h1" variant="h5">
+//                 Sign in to E-Report 
+//                 </Typography>
+//                     <FormLogin />
+//                 </Card>
+
+//             </Grid>
+
+//         </div>
+//         <Box mt={8}>
+//             <Copyright />
+//         </Box>
+//         </Container>
+//     </div>
+//   );
+// }
+
+export default withAuth(Login)

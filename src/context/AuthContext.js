@@ -35,12 +35,12 @@ export class AuthContextProvider extends Component {
     }
 
     login   =   (credentials) => {
-        return baseApi.post('/auth/login', credentials)
+        return baseApi.post('/auth/signin', credentials)
                 .then(res => {
-
+                    // console.info(res)
                     const {token} = res.data
-                   
-                    localStorage.setItem('token',token)
+                //    console.info(token)
+                    localStorage.setItem('token', token)
                     
                     this.setState({
                         token,
@@ -48,6 +48,9 @@ export class AuthContextProvider extends Component {
                     })
                     
                     //  return console.log(res)
+                })
+                .catch(err => {
+                    alert('Invalid Email or Password')
                 })
     }
 

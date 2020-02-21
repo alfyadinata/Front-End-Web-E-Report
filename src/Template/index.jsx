@@ -26,6 +26,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard'
 import Complaint from '../pages/Complaint';
 import Login from '../pages/Login';
+import ProtectedRoute from '../Router/ProtectedRoute';
 
 function Copyright() {
   return (
@@ -187,9 +188,9 @@ export default function Template() {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             {/* <Switch> */}
-              <Route path="/dashboard" exact component={Dashboard} />
-              <Route path="/complaint" component={Complaint} />
-              <Route path="/login" component={Login} />
+              <ProtectedRoute path="/dashboard" exact component={Dashboard} />
+              <ProtectedRoute path="/complaint" component={Complaint} />
+              <ProtectedRoute path="/login" component={Login} />
             {/* </Switch> */}
             <Box pt={4}>
               <Copyright />
