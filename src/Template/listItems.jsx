@@ -18,6 +18,14 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItem>
     </Link>
+    <Link to="/category" style={{ textDecoration: 'none' }}>
+      <ListItem button>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Category" />
+      </ListItem>
+    </Link>
     <Link to="/complaint" style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>

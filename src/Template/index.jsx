@@ -21,12 +21,13 @@ import { mainListItems } from './listItems';
 // asset
 import logoApp from '../assets/logoApp.png'
 // route 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter,  } from 'react-router-dom';
 // pages
 import Dashboard from '../pages/Dashboard'
 import Complaint from '../pages/Complaint';
 import Login from '../pages/Login';
 import ProtectedRoute from '../Router/ProtectedRoute';
+import Category from '../pages/Category';
 
 function Copyright() {
   return (
@@ -190,6 +191,7 @@ export default function Template() {
             {/* <Switch> */}
               <ProtectedRoute path="/dashboard" exact component={Dashboard} />
               <ProtectedRoute path="/complaint" component={Complaint} />
+              <ProtectedRoute path="/category"  component={Category} />
               <ProtectedRoute path="/login" component={Login} />
             {/* </Switch> */}
             <Box pt={4}>
