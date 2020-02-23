@@ -65,7 +65,7 @@ class Category extends React.Component {
 
       return (
         <Grid container spacing={3}>
-            <h4>Management Category</h4>
+            <h2>Management Category</h2>
             <Grid container>
                 <Grid item xs={12}>
                     <TableData />
