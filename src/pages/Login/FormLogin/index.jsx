@@ -38,9 +38,7 @@ class FormLogin extends React.Component {
                 fullWidth
                 id="email"
                 label="Email Address"
-                name="email"
                 autoComplete="email"
-                onChange={this.handleChange}
                 name="email"
                 value={this.state.email}
             />
@@ -54,7 +52,6 @@ class FormLogin extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                name="password"
                 onChange={this.handleChange}
                 value={this.state.password}
             />

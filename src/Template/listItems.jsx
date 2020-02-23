@@ -26,20 +26,36 @@ export const mainListItems = (
         <ListItemText primary="Category" />
       </ListItem>
     </Link>
-    <Link to="/complaint" style={{ textDecoration: 'none' }}>
-      <ListItem button>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Complaint" />
-      </ListItem>
-    </Link>
+      <Link to="/report" style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Complaint" />
+        </ListItem>
+      </Link>
+      <Link to="/complaint" style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Report" />
+        </ListItem>
+      </Link>      
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Users" />
     </ListItem> 
+    <Link to="/logs" style={{ textDecoration: 'none' }}>    
+      <ListItem button>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Logs" />
+      </ListItem> 
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />
