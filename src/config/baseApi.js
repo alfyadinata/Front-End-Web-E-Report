@@ -1,7 +1,10 @@
 import Axios from 'axios'
 
 const baseApi   =   Axios.create({
-    baseURL: `http://192.168.43.136:5000`
+    baseURL: `http://192.168.43.136:5000`,
+    // headers: {
+    //     'Authorization': `Bearer ${token}`
+    // }
 })
 
 export default baseApi

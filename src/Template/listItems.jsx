@@ -42,12 +42,14 @@ export const mainListItems = (
           <ListItemText primary="Report" />
         </ListItem>
       </Link>      
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Users" />
-    </ListItem> 
+      <Link to="/users" style={{ textDecoration: 'none' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Users" />
+        </ListItem> 
+      </Link>
     <Link to="/logs" style={{ textDecoration: 'none' }}>    
       <ListItem button>
         <ListItemIcon>

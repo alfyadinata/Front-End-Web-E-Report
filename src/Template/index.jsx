@@ -18,6 +18,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { mainListItems } from './listItems';
+import { TextField } from '@material-ui/core';
+
 // asset
 import logoApp from '../assets/logoApp.png'
 // route 
@@ -28,6 +30,7 @@ import Complaint from '../pages/Complaint';
 import Login from '../pages/Login';
 import ProtectedRoute from '../Router/ProtectedRoute';
 import Category from '../pages/Category';
+import User from '../pages/User';
 
 function Copyright() {
   return (
@@ -192,6 +195,7 @@ export default function Template() {
               <ProtectedRoute path="/dashboard" exact component={Dashboard} />
               <ProtectedRoute path="/complaint" component={Complaint} />
               <ProtectedRoute path="/category"  component={Category} />
+              <ProtectedRoute path="/users"  component={User} />
               <ProtectedRoute path="/login" component={Login} />
             {/* </Switch> */}
             <Box pt={4}>

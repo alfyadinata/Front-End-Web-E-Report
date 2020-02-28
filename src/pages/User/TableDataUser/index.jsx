@@ -6,11 +6,13 @@ import baseApi from '../../../config/baseApi';
 class TableData extends React.Component {
   state   = {
     columns: [
-      { title: 'Category Name', field: 'name' },
+      { title: 'User Name', field: 'name' },
+      { title: 'Email', field: 'email'},
+      { title: 'NIK', field: 'nik'},
       {
-        title: 'Type',
-        field: 'type',
-        lookup: { 0: 'News', 1: 'Complaint', 2: 'Both' },
+        title: 'Role',
+        field: 'role_id',
+        lookup: { 1: 'Super Admin', 2: 'Admin', 3: 'Reporter' },
       },
     ],
     data: [],
@@ -20,7 +22,7 @@ class TableData extends React.Component {
 
     // console.info(newData)
       
-    await baseApi.post('category/create', newData)
+    await baseApi.post('users/create', newData)
     .then(async res => {
 
       setTimeout(() => {
@@ -29,7 +31,9 @@ class TableData extends React.Component {
 
     })
     .catch(err => {
-      alert(err)
+
+      alert('Something is Went Wrong')
+
     })
 
 
@@ -37,37 +41,36 @@ class TableData extends React.Component {
 
   handleUpdate  = async (id, newData)  =>  {
 
-    await baseApi.patch(`/category/${id}/edit`, newData)
+    await baseApi.patch(`/users/${id}/edit`, newData)
     .then(async res => {
 
       await this.getData()
 
     })
     .catch(err => {
-      console.info(err)
+      alert(err)
     })
 
   }
 
   handleDelete  = async (id)  =>  {
 
-    await baseApi.delete(`/category/${id}/delete`, id)
+    await baseApi.delete(`/users/${id}/delete`, id)
     .then(async res => {
 
       setTimeout(() => {
         this.getData()        
       }, 100);
 
-
     })
     .catch(err => {
-      console.info(err)
+      alert(err)
     })
   }
 
   getData     =   async ()  =>  {
 
-    await baseApi.get('/category')
+    await baseApi.get('/users')
     .then(res => {
       console.log(res)
       this.setState({
