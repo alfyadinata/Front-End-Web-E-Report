@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 import baseApi from '../../../config/baseApi';
 
 
-class TableData extends React.Component {
+class TableDataUser extends React.Component {
   state   = {
     columns: [
       { title: 'User Name', field: 'name' },
@@ -31,11 +31,10 @@ class TableData extends React.Component {
 
     })
     .catch(err => {
-
-      alert('Something is Went Wrong')
+      console.info(err)
+      // alert('Something is Went Wrong')
 
     })
-
 
   }
 
@@ -55,8 +54,8 @@ class TableData extends React.Component {
 
   handleDelete  = async (id)  =>  {
 
-    await baseApi.delete(`/users/${id}/delete`, id)
-    .then(async res => {
+    await baseApi.delete(`/users/${id}/delete`)
+    .then(async => {
 
       setTimeout(() => {
         this.getData()        
@@ -74,7 +73,7 @@ class TableData extends React.Component {
     .then(res => {
       console.log(res)
       this.setState({
-        data: res.data.data
+        data: res.data.data.docs
       })
 
     })
@@ -97,7 +96,21 @@ class TableData extends React.Component {
         <MaterialTable
           title="Data Control"
           columns={this.state.columns}
-          data={this.state.data}
+          data={query =>
+            new Promise((resolve, reject) => {
+              baseApi.get(`/users?per_page=${query.pageSize}&page=${query.page+1}`)
+                .then(result => {
+                  this.setState({
+                    data: result.data.data.docs
+                  })
+                  resolve({
+                    data: this.state.data,
+                    page: result.data.data.pages - 1,
+                    totalCount: result.data.data.total,
+                  })
+                })
+            })
+          }  
           options={{
             filtering: true
           }}
@@ -132,4 +145,4 @@ class TableData extends React.Component {
   }
 }
 
-export default TableData
+export default TableDataUser

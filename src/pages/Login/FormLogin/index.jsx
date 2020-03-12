@@ -40,6 +40,7 @@ class FormLogin extends React.Component {
                 label="Email Address"
                 autoComplete="email"
                 name="email"
+                onChange={this.handleChange}
                 value={this.state.email}
             />
             <TextField

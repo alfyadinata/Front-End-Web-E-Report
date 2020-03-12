@@ -5,6 +5,8 @@ import baseApi from '../../../config/baseApi';
 
 class TableData extends React.Component {
   state   = {
+    isSelected: false,
+    selectData: [],
     columns: [
       { title: 'Category Name', field: 'name' },
       {
@@ -18,8 +20,6 @@ class TableData extends React.Component {
 
   handleCreate  = async (newData)  =>  {
 
-    // console.info(newData)
-      
     await baseApi.post('category/create', newData)
     .then(async res => {
 
@@ -54,10 +54,7 @@ class TableData extends React.Component {
     await baseApi.delete(`/category/${id}/delete`, id)
     .then(async res => {
 
-      setTimeout(() => {
         this.getData()        
-      }, 100);
-
 
     })
     .catch(err => {
@@ -87,17 +84,33 @@ class TableData extends React.Component {
 
   }
 
+  handleMultiDelete   = async (data) => {
 
+    await data.map(key => {
+      this.handleDelete(key.id)
+    })
 
+  }
   render() {
     return (
         <MaterialTable
           title="Data Control"
           columns={this.state.columns}
-          data={this.state.data}
           options={{
-            filtering: true
+            filtering: true,
+            selection: true,
+            selectionProps: ({
+              color: 'primary'
+            })
           }}
+          actions={[
+            {
+              tooltip: 'Remove All Selected Data',
+              icon: 'delete',
+              onClick: (evt, data) => this.handleMultiDelete(data)
+            }
+          ]}
+          data={this.state.data}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {

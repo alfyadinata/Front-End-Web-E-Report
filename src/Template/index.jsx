@@ -31,6 +31,7 @@ import Login from '../pages/Login';
 import ProtectedRoute from '../Router/ProtectedRoute';
 import Category from '../pages/Category';
 import User from '../pages/User';
+import Log from '../pages/Log';
 
 function Copyright() {
   return (
@@ -197,6 +198,7 @@ export default function Template() {
               <ProtectedRoute path="/category"  component={Category} />
               <ProtectedRoute path="/users"  component={User} />
               <ProtectedRoute path="/login" component={Login} />
+              <ProtectedRoute path="/logs" component={Log} />
             {/* </Switch> */}
             <Box pt={4}>
               <Copyright />

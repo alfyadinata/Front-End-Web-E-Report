@@ -26,7 +26,7 @@ export const mainListItems = (
         <ListItemText primary="Category" />
       </ListItem>
     </Link>
-      <Link to="/report" style={{ textDecoration: 'none' }}>
+      <Link to="/complaint" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <ShoppingCartIcon />
