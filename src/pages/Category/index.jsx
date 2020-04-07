@@ -2,7 +2,6 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid';
 import TableData from './TableData';
 import Loader from '../../components/Loader';
-import { makeStyles } from '@material-ui/core/styles';
 import baseApi from '../../config/baseApi';
 
 class Category extends React.Component {
@@ -61,8 +60,6 @@ class Category extends React.Component {
         )
       }
 
-      const classes     =   styles
-
       return (
         <Grid container spacing={3}>
             <h2>Management Category</h2>
@@ -75,11 +72,5 @@ class Category extends React.Component {
         )
     }
 }
-
-const styles   =   makeStyles(theme => ({
-    formControl: {
-        margin: '20%'
-    }
-}))
 
 export default Category

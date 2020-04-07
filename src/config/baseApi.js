@@ -1,13 +1,11 @@
-import Axios from 'axios'
+import Axios from 'axios';
 
-const token     =   localStorage.getItem('token')
+const baseApi = Axios.create({
+	baseURL: `http://192.168.43.136:5000`
+});
 
-const baseApi   =   Axios.create({
-    baseURL: `http://10.236.210.219:5000`,
-    headers: {
-        'Authorization': `${token}`,
-        'Content-Type': 'application/json'
-    }
-})
-
-export default baseApi
+const token = localStorage.getItem('token');
+if (token) {
+	baseApi.defaults.headers.common['Authorization'] = `${token}`;
+}
+export default baseApi;

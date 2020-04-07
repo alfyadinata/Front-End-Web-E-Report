@@ -153,7 +153,8 @@ export default function Template() {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              E-Report Panel
+              {/* E-Report Panel */}
+              <MenuIcon />
               {/* <img src={logoApp} alt="loading" style={{ width:'100px', marginTop:'1%' }} /> */}
               {/* <TextField
                 placeholder="Search something ..."
