@@ -1,14 +1,20 @@
 import React, { Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TableData from './TableData';
 import Loader from '../../components/Loader';
 import MyTable from '../../components/MyTable';
-import { Button, Icon, Modal } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+import { Button, Icon, TextField, FormControl, FormGroup, InputLabel, Select, MenuItem } from '@material-ui/core';
+import Modal from '../../components/Modal/index';
+import baseApi from '../../config/baseApi';
 
 class Complaint extends React.Component {
 	state = {
+		form: {
+			complaint_id: '',
+			status: '0',
+			message: ''
+		},
+		userEmail: '',
+		titleComplaint: '',
 		modal: false,
 		isLoading: true,
 		column: [
@@ -38,7 +44,7 @@ class Complaint extends React.Component {
 							endIcon={<Icon>delete</Icon>}
 						/>
 						<Button
-							onClick={this.handleModal}
+							onClick={() => this.handleModal(rowData.id, rowData.users.email, rowData.description)}
 							color="inherit"
 							variant="text"
 							style={{ textTransform: 'none' }}
@@ -50,15 +56,62 @@ class Complaint extends React.Component {
 			}
 		]
 	};
+
 	componentDidMount() {
 		setTimeout(() => {
 			this.setState({ isLoading: false });
 		}, 1000);
 	}
 
-	handleModal = () => {
-		this.setState({ modal: !this.state.modal });
+	handleModal = (id, email, title) => {
+		// alert(id);
+		this.setState({
+			...this.state,
+			modal: true,
+			userEmail: email,
+			titleComplaint: title,
+			form: {
+				complaint_id: id
+			}
+		});
 	};
+
+	handleCloseModal = () => {
+		this.setState({
+			...this.state,
+			modal: false,
+			form: {
+				complaint_id: ''
+			}
+		});
+	};
+
+	handleChange = (event) => {
+		let formData = { ...this.state.form };
+		formData[event.target.name] = event.target.value;
+		this.setState({
+			form: formData
+		});
+	};
+
+	handleSubmit = async () => {
+		let id = await this.state.form.complaint_id;
+
+		console.log(this.state.form);
+
+		await baseApi
+			.post(`/response/${id}`, this.state.form)
+			.then((res) => {
+				this.componentDidMount();
+				this.handleCloseModal();
+				alert('success giving a response');
+			})
+			.catch((err) => {
+				alert(err);
+				console.log(err);
+			});
+	};
+
 	render() {
 		if (this.state.isLoading) {
 			return <Loader />;
@@ -72,15 +125,84 @@ class Complaint extends React.Component {
 				</Grid>
 				<Modal
 					open={this.state.modal}
-					onClose={this.handleModal}
+					onClose={this.handleCloseModal}
 					aria-labelledby="simple-modal-title"
 					aria-describedby="simple-modal-description"
+					style={{ padding: 300 }}
+					title="Response Complaint"
 				>
-					<h4>Hello</h4>
+					<div style={{ padding: 10 }}>
+						<div>
+							<h4>Info Complaint :</h4>
+							<div>
+								<FormGroup>
+									<FormControl>
+										<TextField
+											placeholder="User Email"
+											value={this.state.userEmail}
+											label="User Email"
+											readonly
+										/>
+									</FormControl>
+									<FormControl>
+										<TextField
+											placeholder="Title Complaint"
+											value={this.state.titleComplaint}
+											label="Title Complaint"
+											readonly
+										/>
+									</FormControl>
+								</FormGroup>
+							</div>
+							<h4>Response :</h4>
+							<div>
+								<FormGroup>
+									<FormControl>
+										<TextField
+											name="message"
+											onChange={this.handleChange}
+											value={this.state.form.message}
+											placeholder="Message"
+											label="Message"
+											multiline={true}
+											rows={2}
+										/>
+									</FormControl>
+									<br />
+									<FormControl>
+										<InputLabel id="select">Status</InputLabel>
+										<Select
+											value={this.state.form.status}
+											name="status"
+											onChange={this.handleChange}
+											labelId="select"
+											required
+										>
+											<MenuItem value="0">Denied</MenuItem>
+											<MenuItem value="1">Accept</MenuItem>
+										</Select>
+									</FormControl>
+								</FormGroup>
+								<br />
+								<center>
+									<Button variant="contained" onClick={this.handleSubmit} color="primary">
+										Submit
+									</Button>
+								</center>
+							</div>
+						</div>
+					</div>
 				</Modal>
 			</Grid>
 		);
 	}
 }
+
+const styles = {
+	modalBody: {
+		backgroundColor: 'white',
+		padding: 100
+	}
+};
 
 export default Complaint;

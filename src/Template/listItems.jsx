@@ -7,70 +7,86 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import { Link } from 'react-router-dom';
-// pages
+
+// styles
+const styles = {
+	text: {
+		textDecoration: 'none',
+		color: 'black'
+	}
+};
 export const mainListItems = (
-  <div>
-    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItem>
-    </Link>
-    <Link to="/category" style={{ textDecoration: 'none' }}>
-      <ListItem button>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Category" />
-      </ListItem>
-    </Link>
-      <Link to="/complaint" style={{ textDecoration: 'none' }}>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Complaint" />
-        </ListItem>
-      </Link>
-      <Link to="/complaint" style={{ textDecoration: 'none' }}>
-        <ListItem button>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Report" />
-        </ListItem>
-      </Link>      
-      <Link to="/users" style={{ textDecoration: 'none' }}>
-        <ListItem button>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Users" />
-        </ListItem> 
-      </Link>
-    <Link to="/logs" style={{ textDecoration: 'none' }}>    
-      <ListItem button>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="Logs" />
-      </ListItem> 
-    </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      {/* <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon> */}
-      {/* <ListItemText primary="Find Reporter" /> */}
-    </ListItem>
-  </div>
+	<div>
+		<Link to="/dashboard" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<DashboardIcon />
+				</ListItemIcon>
+				<ListItemText primary="Dashboard" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/category" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<BarChartIcon />
+				</ListItemIcon>
+				<ListItemText primary="Category" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/complaint" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<ShoppingCartIcon />
+				</ListItemIcon>
+				<ListItemText primary="Complaint" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/complaint" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<ShoppingCartIcon />
+				</ListItemIcon>
+				<ListItemText primary="Complete" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/complaint" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<ShoppingCartIcon />
+				</ListItemIcon>
+				<ListItemText primary="Report" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/users" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<PeopleIcon />
+				</ListItemIcon>
+				<ListItemText primary="Users" />
+			</ListItem>
+		</Link>
+		<hr />
+		<Link to="/logs" style={styles.text}>
+			<ListItem button>
+				<ListItemIcon>
+					<PeopleIcon />
+				</ListItemIcon>
+				<ListItemText primary="Logs" />
+			</ListItem>
+		</Link>
+		<hr />
+		<ListItem button>
+			<ListItemIcon>
+				<BarChartIcon />
+			</ListItemIcon>
+			<ListItemText primary="Reports" />
+		</ListItem>
+	</div>
 );
 
 // export const secondaryListItems = (
